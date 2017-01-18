@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Carbox</title>
+</h:head>
+<h:body>
+
+	<h:form id="form" method="post" >
+		
+		<p:poll id="poll" interval="1"  listener="#{auctionBean.dbListener()}" update="auctionTable"  />
+
+		<f:metadata>
+		    <f:viewParam name="advertiseId" value="#{auctionBean.advertiseId}" />
+		     <f:viewParam name="userId" value="#{auctionBean.userId}" />
+		</f:metadata>
+
+
+		<p:panel header="Auction Window" style="width: 98%; height: 100%;">
+
+			<h:panelGrid columns="3">
+				<h:outputLabel for="price" value="Price: " />
+				<p:inputText id="price" value="#{auctionBean.price}" maxlength="7" style="width:110px;"/>
+				<h:commandButton  type="submit" value="Add Auction" actionListener="#{auctionBean.addAuction()}" />
+								
+				<h:outputText  value="Your User ID: " style="color:red; font-size:20px;"/>
+				<h:outputText  value="#{auctionBean.userId}"  style="color:red; font-size:20px;" />
+				<h:outputText  value="Please enter price more than last bidding price otherwise your bidding will not seen."  style="color:red; font-size:20px;" />
+				
+			</h:panelGrid>
+
+			<p:spacer height="30px;" />
+
+			<p:dataTable id="auctionTable" value="#{auctionBean.dbListener()}" var="auction" widgetVar="50" style="width: 700px;" editable="false">
+
+				<p:column width="125px">
+					<f:facet name="header"> <h:outputText value="Advertise No" /> </f:facet>
+					<p:outputLabel for="advertiseNo" id="advertiseNo" value="#{auction.advertiseId}" />
+				</p:column>
+
+				<p:column width="125px">
+					<f:facet name="header"> <h:outputText value="User Id" /> </f:facet>
+					<p:outputLabel for="userId" id="userId" value="#{auction.userId}"  />
+				</p:column>
+
+				<p:column width="250px">
+					<f:facet name="header"> <h:outputText value="Auction Date" /> </f:facet>
+					<p:outputLabel for="auctionDate" id="auctionDate" value="#{auction.auctionDate}" />
+				</p:column>
+
+				<p:column width="200px">
+					<f:facet name="header"> <h:outputText value="Price" /> </f:facet>
+					<p:outputLabel for="price" id="price" value="#{auction.auctionPrice}" />
+				</p:column>
+
+			</p:dataTable>
+			
+		</p:panel>
+
+	</h:form>
+</h:body>
+</html>

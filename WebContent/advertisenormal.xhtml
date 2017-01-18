@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />		
+ 
+            <title>CarBox</title>
+        </f:facet>
+ 
+        <f:facet name="middle">
+            <h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+            
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+            
+            <h:outputScript name="bootstrap/js/bootstrap.js" />
+        </f:facet>
+        
+         <f:facet name="last">
+			<h:outputStylesheet name="grid/grid.css" library="primefaces" />
+	    </f:facet>
+ 
+    </h:head>
+<h:body>
+
+	<!-- header -->
+	<div class="control-fluid" style="padding-top: 75px;">
+		<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<ui:insert name="headerArea">
+				<ui:include src="template/header.xhtml" />
+			</ui:insert>
+		</div>
+	</div>
+
+
+<h:form> 
+
+<div class="ui-grid ui-grid-responsive" style="margin-top: 15px; ">
+    <div class="ui-grid-row">
+		<div class="ui-col-md-1" style="width: 200px;"/>
+		
+		<div class="ui-col-md-10" style="width: 100%;">
+		<h4><b>Contact Information</b></h4>
+		<div class="well"> 	
+			<!-- <fieldset > -->
+					<h:panelGrid columns="3">
+						
+						<p:outputLabel  value="First Name" />
+							<p:outputLabel id="firstname" value="#{advertiseBean.firstName}" />
+							<h:message for="firstname" style="color:red" />
+						
+						<p:outputLabel  value="Last Name" style="margin-right:15px;"/>		
+							<p:outputLabel id="lastname" value="#{advertiseBean.lastName}" />
+							<h:message for="lastname" style="color:red" />
+						
+						<p:outputLabel  value="Mail Address" style="margin-right:15px;"/>	
+							<p:outputLabel id="mail" value="#{advertiseBean.mail}" />
+							<h:message for="mail" style="color:red" />
+						
+						<p:outputLabel  value="Home Phone" style="margin-right:15px;"/>		
+							<p:inputMask id="homephone" value="#{advertiseBean.homePhone}" mask="(999) 999-9999" required="true" requiredMessage="Value is required." />
+							<p:message for="homephone" style="color:red" />
+						
+						<p:outputLabel  value="Mobile Phone" style="margin-right:15px;"/>	
+							<p:inputMask id="mobilephone" value="#{advertiseBean.mobilePhone}" mask="(999) 999-9999" required="true" requiredMessage="Value is required."/>
+							<p:message for="mobilephone" style="color:red; margin-left:15px;" />
+						
+					</h:panelGrid>	
+				<!-- </fieldset> -->
+		</div>	
+		</div>
+		<div class="ui-col-md-1" style="width: 200px;"/>
+		
+	</div>	
+</div>
+	
+	
+<div class="ui-grid ui-grid-responsive" style="margin-top: 15px; ">
+    <div class="ui-grid-row">
+		<div class="ui-col-md-1" style="width: 200px;"/>
+			
+			<div class="ui-col-md-10" style="width: 100%;">
+			<h4><b>Vehicle Details</b></h4>
+			<div class="well" >
+					<h:panelGrid columns="3" >
+						
+						<p:outputLabel value="Vehicle Type" style="margin-right:15px;"/>
+							<p:selectOneMenu id="vehicleTypeMenu" style="width:100%;" value="#{advertiseBean.vehicleType}">
+	          				  <f:selectItem itemLabel="Car" itemValue="Car" />
+	          				  <f:selectItem itemLabel="Jeep" itemValue="Jeep" />
+	        				</p:selectOneMenu>
+	        				<p:message for="vehicleTypeMenu" style="color:red" />
+						
+						
+						<p:outputLabel value="Brand" style="margin-right:15px;"/>	
+							<p:inputText id="brand" value="#{advertiseBean.brand}" required="true" requiredMessage="Value is required."/>
+							<p:message for="brand" style="color:red; margin-left:15px;" />
+						
+						
+						<p:outputLabel value="Model" style="margin-right:15px;"/>	
+							<p:inputText id="model" value="#{advertiseBean.model}" required="true" requiredMessage="Value is required."/>
+							<p:message for="model" style="color:red; margin-left:15px;" />
+						
+						
+						<p:outputLabel value="Motor" style="margin-right:15px;"/>	
+							<p:selectOneMenu id="motorMenu" style="width:100%;" value="#{advertiseBean.motor}">
+	          				  <f:selectItem itemLabel="1.2" itemValue="1.2" />
+	          				  <f:selectItem itemLabel="1.4" itemValue="1.4" />
+	          				  <f:selectItem itemLabel="1.5" itemValue="1.5" />
+	          				  <f:selectItem itemLabel="1.6" itemValue="1.6" />
+	          				  <f:selectItem itemLabel="1.8" itemValue="1.8" />
+	          				  <f:selectItem itemLabel="2.0" itemValue="2.0" />
+	          				  <f:selectItem itemLabel="2.5" itemValue="2.5" />
+	        				</p:selectOneMenu>
+	        				<p:message for="motorMenu" style="color:red" />
+							
+						
+						
+						<p:outputLabel value="Hardware Package" style="margin-right:15px;"/>	
+							<p:inputText id="hardwarePackage" value="#{advertiseBean.hardwarePackage}"  required="true" requiredMessage="Value is required."/>
+							<p:message for="hardwarePackage" style="color:red; margin-left:15px;" />
+						
+						<p:outputLabel value="Year" style="margin-right:15px;"/>	
+							<p:inputMask id="year" value="#{advertiseBean.year}" mask="9999" required="true" requiredMessage="Value is required."/>
+							<p:message for="year" style="color:red; margin-left:15px;"  />
+							
+						
+						<p:outputLabel value="Fuel" style="margin-right:15px;"/>	
+							<p:selectOneMenu id="fuelMenu" style="width:100%;" value="#{advertiseBean.fuel}"> 
+	          				  <f:selectItem itemLabel="Gasoline" itemValue="Gasoline" />
+	          				  <f:selectItem itemLabel="Diesel" itemValue="Diesel" />
+	          				  <f:selectItem itemLabel="Benzine-LPG" itemValue="Benzine-LPG" />
+	        				</p:selectOneMenu>
+	        				<p:message for="fuelMenu" style="color:red" />
+						
+						
+						<p:outputLabel value="Gear" style="margin-right:15px;"/>	
+							<p:selectOneMenu id="gearMenu" style="width:100%;" value="#{advertiseBean.gear}">
+							  <f:selectItem itemLabel="Straight" itemValue="Straight" />
+	          				  <f:selectItem itemLabel="Semi Automatic" itemValue="Semi Automatic" />
+	          				  <f:selectItem itemLabel="Automatic" itemValue="Automatic" />
+	        				</p:selectOneMenu>
+	        				<p:message for="gearMenu" style="color:red" />
+						
+						<p:outputLabel value="Km" style="margin-right:15px;"/>	
+							<pe:inputNumber id="km" value="#{advertiseBean.km}" thousandSeparator="" decimalSeparator="." decimalPlaces="0"  required="true" requiredMessage="Value is required."/>
+							<p:message for="km" style="color:red; margin-left:15px;"  />
+						
+						<p:outputLabel value="Color" style="margin-right:15px;"/>
+							<p:selectOneMenu id="colorMenu" style="width:100%;" value="#{advertiseBean.color}">
+	          				  <f:selectItem itemLabel="White" itemValue="White" />
+	          				  <f:selectItem itemLabel="Black" itemValue="Black" />
+	          				  <f:selectItem itemLabel="Gray" itemValue="Gray" />
+	          				  <f:selectItem itemLabel="Brown" itemValue="Brown" />
+	          				  <f:selectItem itemLabel="Dark Blue" itemValue="Dark Blue" />
+	          				  <f:selectItem itemLabel="Beige" itemValue="Beige" />
+	          				  <f:selectItem itemLabel="Smoke-Colored" itemValue="Smoke-Colored" />
+	        				</p:selectOneMenu>
+	        				<p:message for="colorMenu" style="color:red" />
+						
+					</h:panelGrid>	
+			</div>
+		</div>
+		<div class="ui-col-md-1" style="width: 200px;"/>
+		
+	</div>
+</div>	
+	
+	
+	
+<div class="ui-grid ui-grid-responsive" style="margin-top: 15px; ">
+	<div class="ui-grid-row">
+		<div class="ui-col-md-1" style="width: 200px;"/>
+			
+		<div class="ui-col-md-10"  style="width: 100%;">
+			<h4><b>Advertising Details</b></h4>
+			<div class="well">
+				
+				<h:panelGrid >
+				<p><b>Advertising Header</b></p>
+				<p:inputTextarea id="advertisingHeader" value="#{advertiseBean.advertisingHeader}" class="form-control" rows="2" cols="100" required="true" requiredMessage="Value is required."/>
+				<p:message for="advertisingHeader"/>
+				</h:panelGrid>
+				<br/> <br/>
+				          
+				<p:editor id="editor" widgetVar="editorWidget" value="#{advertiseBean.advertisingDetail}" width="600" />
+				
+				<br/><br/>
+				 
+				
+				<h:panelGrid columns="3" >
+					<p:outputLabel value="Price" for="price"  style="font-weight: bold;"/> 
+					<pe:inputNumber id="price" value="#{advertiseBean.price}" thousandSeparator="" decimalSeparator="." decimalPlaces="0" required="true" requiredMessage="Value is required." />
+					<p:message for="price" />
+					
+				</h:panelGrid>
+				<br/> <br/>
+			</div>
+		</div>
+		<div class="ui-col-md-1" style="width: 200px;"/>
+		
+	</div>	
+</div>
+	
+	
+
+	<div class="col-md-12" style="padding-bottom: 15px; padding-bottom: 350px;">
+		<div class="container" align="center">
+						
+			<h:button  value="Cancel" outcome="index.xhtml?faces-redirect=true"    class="btn btn-default btn-lg" />			
+			<h:commandButton action="advertisephotosfornormal.xhtml" value="Continue" actionListener="#{advertiseBean.firstStepOfAdvertisingNormal()}" class="btn btn-primary btn-lg" />
+			
+			
+		</div>
+	</div>
+	
+	
+	<br/><br/><br/><br/><br/><br/><br/>
+	
+</h:form>
+
+
+
+
+	<!-- footer -->
+	<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+		<div class="container" >
+			<ui:insert name="footerArea">
+				<ui:include src="template/footer.xhtml"></ui:include>
+			</ui:insert>
+		</div>
+	</div>
+</h:body>
+</html>

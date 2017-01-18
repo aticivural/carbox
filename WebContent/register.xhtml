@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />		
+
+        <title>CarBox</title>
+    </f:facet>
+
+    <f:facet name="middle">
+        <h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+        
+        <h:outputScript name="bootstrap/js/bootstrap.js" />
+    </f:facet>
+    
+    <f:facet name="last">
+		<h:outputStylesheet name="grid/grid.css" library="primefaces" />
+    </f:facet>
+ 
+</h:head>
+
+<h:body>
+
+	<!-- header -->
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<ui:insert name="headerArea">
+			<ui:include src="template/header.xhtml"></ui:include>
+		</ui:insert>
+	</div>
+
+	<br />
+	<br />
+	<br />
+	<br/>
+	<br/>
+
+
+	<!-- register form -->
+<h:form id="registration-form">
+		<div class="ui-grid ui-grid-responsive" style="margin-top: 15px; ">
+	    <div class="ui-grid-row">	
+			<div class="ui-col-md-3" style="width:100%;" >
+			</div>
+			
+			<div class="ui-col-md-6" style="padding-bottom: 200px;  padding-top: 10px;" >
+				<div class="well well-lg"> 	
+					<fieldset>
+					<legend class="text-center header">Register Form</legend>
+					<h:panelGrid columns="2"  width="500px;" >
+					
+						<h:outputLabel  for="firstname" value="Enter Firstname" style="margin-left:25px;"/>
+						<h:inputText value="#{registerBean.firstname}" class="form-control" id="firstname" required="true" requiredMessage="Please enter firstname" />
+						<h:inputHidden />
+						<h:message for="firstname" style="color: red; margin-left:10px;" />
+						
+						
+						<h:outputLabel for="lastname" value="Enter Lastname" style="margin-left:25px;" />
+						<h:inputText value="#{registerBean.lastname}"  class="form-control" id="lastname" required="true" requiredMessage="Please enter lastname" /> 
+						<h:inputHidden /><h:message for="lastname" style="color: red; margin-left:10px;" />
+						
+						
+						
+						<h:outputLabel for="mail" value="Enter Email" style="margin-left:25px;" />
+						<h:inputText id="mail" value="#{registerBean.mail}"  class="form-control"  required="true" requiredMessage="Please enter mail" > 
+							<f:validator validatorId="mailValidator" />
+							<f:attribute name="confirmMail" value="#{confirmMail}" />
+						</h:inputText>	
+						<h:inputHidden /><h:message for="mail" style="color: red; margin-left:10px;" />
+						
+						
+						<h:outputLabel for="confirmMail" value="Enter Confirm Email" style="margin-left:25px;"/>
+						<h:inputText id="confirmMail" binding="#{confirmMail}" class="form-control"   required="true" requiredMessage="Please confirm enter mail" style="margin-right:10px;" /> 
+						<h:inputHidden /><h:message for="confirmMail" style="color: red; margin-left:10px;" />
+						
+						
+						
+						
+						<h:outputLabel for="password" value="Enter Password" style="margin-left:25px;"/>
+						<h:inputSecret value="#{registerBean.password}" class="form-control" id="password" required="true" requiredMessage="Please enter password" > 
+							<f:validator validatorId="passwordValidator" />
+							<f:attribute name="confirmPassword" value="#{confirmPassword}" />
+						</h:inputSecret>
+						<h:inputHidden /><h:message for="password" style="color: red; margin-left:10px;" />
+						
+						<h:outputLabel for="confirmPassword" value="Enter Confirm Password" style="margin-left:25px;" />
+						<h:inputSecret id="confirmPassword"  class="form-control"  binding="#{confirmPassword}" required="true" requiredMessage="Please enter confirm password" />
+						<h:inputHidden /><h:message for="confirmPassword" style="color: red; margin-left:10px;" />
+						
+					</h:panelGrid>	
+					  <br/>
+					  
+					  <h:commandButton style="margin-left:240px;" type="reset" value="Reset" class="btn"/>
+					  <h:commandButton  action="#{registerBean.doRegister()}"  value="Register" style="margin-left:1px;" class="btn btn-success btn-btn-large"  />
+			          
+					</fieldset>
+				</div>
+			</div>
+	
+			
+			<div class="ui-col-md-3" style="width:100%;" >
+			</div>
+		
+		</div>	
+	</div>
+</h:form><!-- register form end -->
+
+
+
+	<!-- footer -->
+	<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+		<div class="container">
+			<ui:insert name="footerArea">
+				<ui:include src="template/footer.xhtml"></ui:include>
+			</ui:insert>
+		</div>
+	</div>
+	
+
+	
+</h:body>
+</html>

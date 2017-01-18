@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+
+
+	<!-- header -->
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<ui:insert name="headerArea">
+			<ui:include src="header.xhtml"></ui:include>
+		</ui:insert>
+	</div>
+
+	<br />
+	<br />
+	<br />
+
+
+
+
+<!-- menu and content -->
+
+<div class="col-md-12" style="margin-bottom: 100px;">
+		
+		<div class="col-md-2">
+			<ui:insert name="leftnavArea">
+				<ui:include src="leftnav.xhtml"></ui:include>
+			</ui:insert>
+		</div>
+		
+	<!-- content -->
+		<div class="col-md-10" style="padding-left:25px; padding-right:40px;">
+			<h:outputStylesheet name="css/viewStyle.css" />
+			<ui:insert name="contentArea">
+				<ui:include src="content.xhtml"></ui:include>
+			</ui:insert>
+		</div>
+	
+</div>
+	
+
+<!-- footer -->
+	<div class="navbar navbar-inverse navbar-fixed-bottom" >
+		<div class="container">
+			<ui:insert name="footerArea">
+				<ui:include src="footer.xhtml"></ui:include>
+			</ui:insert>
+		</div>
+	</div>
+	
+</h:body>
+</html>

@@ -1,0 +1,21 @@
+.ui-panel.ui-widget-content.ui-corner-all.ui-widget-content{
+	border:0px;
+	background-color: white;
+	padding:0px;
+}
+
+
+.ui-panel-content.ui-widget-content{
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 2px;
+	padding-left: 2px;
+}
+
+.ui-accordion .ui-accordion-content{
+	padding:5px;
+}
+
+.ui-datatable table{
+	width: 900px;
+}

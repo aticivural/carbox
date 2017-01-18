@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>CarBox</title>
+    </h:head>
+    <h:body>
+<ui:composition>    
+        <h:form>
+            <p:panel header="Select Your Car" style="margin-bottom:10px; width:300px">
+                <h:panelGrid columns="1" >
+                    <p:selectOneMenu id="vehicle" value="#{searchMenu.vehicleType}" style="width:200px" >
+                    	<p:ajax listener="#{searchMenu.onVehicleChange()}" update="brand"  />
+                        <f:selectItem itemLabel="Select Vehicle" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{searchMenu.vehicleTypes}" />
+                    </p:selectOneMenu>
+                    
+                     <p:selectOneMenu id="brand" value="#{searchMenu.brand}" style="width:200px" >
+                    	<p:ajax listener="#{searchMenu.onBrandChange()}" update="model" />
+                        <f:selectItem itemLabel="Select Brand" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{searchMenu.brands}" />
+                    </p:selectOneMenu>
+                    
+                    <p:selectOneMenu id="model" value="#{searchMenu.model}" style="width:200px" >
+                    	<p:ajax listener="#{searchMenu.onModelChange()}" update="motor"  />
+                        <f:selectItem itemLabel="Select Model" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{searchMenu.models}" />
+                    </p:selectOneMenu>
+                    
+                     <p:selectOneMenu id="motor" value="#{searchMenu.motor}" style="width:200px" >
+                    	<p:ajax listener="#{searchMenu.onMotorChange()}"  update="hardwarePackage"/>
+                        <f:selectItem itemLabel="Select Motor" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{searchMenu.motors}" />
+                    </p:selectOneMenu>
+		
+					<p:selectOneMenu id="hardwarePackage" value="#{searchMenu.hardwarePackage}" style="width:200px" >
+                    	<p:ajax listener="#{searchMenu.onHardwarePackageChange()}" />
+                        <f:selectItem itemLabel="Select HardwarePackage" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{searchMenu.hardwarePackages}" />
+                    </p:selectOneMenu>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+</ui:composition>        
+    </h:body>
+</html>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+    
+<h:head>
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />		
+
+        <title>CarBox</title>
+    </f:facet>
+
+    <f:facet name="middle">
+        <h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+        
+        <h:outputScript name="bootstrap/js/bootstrap.js" />
+    </f:facet>
+    
+    <f:facet name="last">
+		<h:outputStylesheet name="grid/grid.css" library="primefaces" />
+    </f:facet>
+</h:head>
+
+<h:body>
+	<!-- header -->
+	<div class="ui-grid ui-grid-responsive">
+	    <div class="ui-grid-row">
+	    	<ui:include src="template/header.xhtml"/>
+		</div>
+	</div>
+
+<br/><br/>
+<div class="ui-fluid" >
+	<!-- vehicle details -->
+	<f:metadata>
+	    <f:viewParam id="advertiseid" name="advertiseid" value="#{vehicleDetailBean.advertiseId}" required="true"/>
+	    <f:viewAction action="#{vehicleDetailBean.initAction}" />
+	</f:metadata>
+	
+	<div class="ui-grid ui-grid-responsive">
+	    <div class="ui-grid-row">
+	    	<div class="ui-col-md-1" style="width: 100px;"/>
+	    	<div class="ui-col-md-11"> <h3><h:outputText value="#{vehicleDetailBean.advertisingHeader}" /></h3> </div><hr/>
+		</div>
+	</div>
+	
+	
+	
+
+<div class="ui-grid ui-grid-responsive">
+    <div class="ui-grid-row">
+    
+    	<div class="ui-col-md-1" style="width: 90px;"/>
+    
+    	<!-- resimler -->
+    	<div class="ui-col-md-6" style="padding-right: 0px;">
+			<p:galleria value="#{vehicleDetailBean.photos}" var="photo" panelWidth="500" panelHeight="313">
+		           <p:graphicImage value="#{vehicleDetailBean.imageByPhotoId}" height="313px;" width="100%;">
+					 <f:param name="photoid" value="#{photo.photoId}" />
+					</p:graphicImage>
+			</p:galleria>
+		</div>
+
+
+		<!-- arac bilgisi & teklif alani -->
+		<div class="ui-col-md-3" style="padding: 2px; margin-left: 15px;">
+			
+			<p:panelGrid columns="2" style="width:100%;" >
+			    <f:facet name="header"> 
+			     	<h:outputText value="#{vehicleDetailBean.price}" rendered="#{vehicleDetailBean.price != null}"/>
+			     	<h:outputText value="#{vehicleDetailBean.startingPrice}" rendered="#{vehicleDetailBean.price == null}"/>
+			     	<h:outputText value=" TL" />
+			    </f:facet>
+			 
+			    <h:outputText value="Advetising No" />
+			    <h:outputText value="#{vehicleDetailBean.advertiseId}" />
+			 
+			    <h:outputText value="Advertising Date" />
+			    <h:outputText value="#{vehicleDetailBean.advertisingDate.substring(0,10)}" />
+			 
+			    <h:outputText value="Brand" />
+			    <h:outputText value="#{vehicleDetailBean.brand}" />
+			 
+			    <h:outputText value="Model" />
+			    <h:outputText value="#{vehicleDetailBean.model}" />
+			    
+			    <h:outputText value="Motor" />
+			    <h:outputText value="#{vehicleDetailBean.motor}" />
+			    
+			    <h:outputText value="Hardware Package" />
+			    <h:outputText value="#{vehicleDetailBean.hardwarePackage}" />
+			    
+			    <h:outputText value="Color" />
+			    <h:outputText value="#{vehicleDetailBean.color}" />
+			    
+			    <h:outputText value="Year" />
+			    <h:outputText value="#{vehicleDetailBean.year}" />
+			    
+			    <h:outputText value="Fuel" />
+			    <h:outputText value="#{vehicleDetailBean.fuel}" />
+			    
+			    <h:outputText value="Gear" />
+			    <h:outputText value="#{vehicleDetailBean.gear}" />
+			    
+			    <h:outputText value="Km" />
+			    <h:outputText value="#{vehicleDetailBean.km}" />
+			</p:panelGrid>
+			<br/>
+			
+			<p:panelGrid columns="2" style="width:100%;"  rendered="#{vehicleDetailBean.isAuction == true}">
+				
+				<f:facet name="header"> Auction Area </f:facet>
+				
+				<h:outputText value="Starting Date" />
+				<h:outputText value="#{vehicleDetailBean.startingDate}" />
+				
+				<h:outputText value="Finishing Date" />
+				<h:outputText value="#{vehicleDetailBean.finishingDate}" />
+				
+				<h:outputText value="Starting Price" />
+				<h:outputText value="#{vehicleDetailBean.startingPrice}" />
+				
+				<!-- <h:outputText value="Remaining Time" />
+				<h:form><pe:timer timeout="vehicleDetailBean" format="HH:mm:ss" id="timer"/></h:form> -->
+				
+				
+				<!-- <h:outputText value="Verilen Teklif" />
+				<h:outputText value="55.000" /> -->
+				
+			</p:panelGrid>
+			
+			<h:panelGroup styleClass="display: inline-block; position: relative;" rendered="#{vehicleDetailBean.isAuction == true}">
+			    <p:button id="auctionButton" onclick="window.open('http://localhost:8080/com.carbox/auctionpage.xhtml?advertiseId=#{vehicleDetailBean.advertiseId}&amp;userId=#{vehicleDetailBean.userIdAsString}&amp;jftfdi=&amp;jffi=auctionpage', 'WindowName', 'dependent=yes, menubar=no, toolbar=no, width=800, height=400'); return false;"
+						 value="Auction Page"  class="btn btn-default btn-lg btn-block"   disabled="#{loginControlBean.loggedIn== false}" title="Please sign in to view auction page">
+				</p:button>
+			
+			    <h:panelGroup styleClass="display: block; height: 100%; width: 100%; position: absolute; top: 0px; left: 0px;"
+			                  rendered="#{vehicleDetailBean.isAuction == true}" id="disabledBtnOverlay" />
+			</h:panelGroup>
+			<pe:tooltip for="disabledBtnOverlay" autoShow="false" widgetVar="tip4"  atPosition="bottom right"/>
+		
+		</div>
+
+
+
+		<!-- uye hakkinda bilgi  -->
+		<div class="ui-col-md-3" >
+			
+			<h:panelGrid columns="1"  style=" border: 1px solid gray; margin-left:15px; width:100%; background-color: #f9f9f9; height:200px; font-size:14px;">
+			
+					<p:row>
+						<p:column colspan="2" >
+							<h:outputText value="#{vehicleDetailBean.firstAndLastName.toUpperCase()}" class="modal-body"  style="font-weight: bold;"/>
+						</p:column>
+					</p:row>
+          			
+          			
+          			<p:row>
+          				<p:column>
+          					<h:outputText value="Mobile Phone :" class="modal-body" />
+          				</p:column>
+          				<p:column>
+          					<h:outputText value="#{vehicleDetailBean.mobilePhone}" class="modal-body" />
+          				</p:column>
+          			</p:row>
+          			
+          			<p:row>
+          				<p:column>
+          					<h:outputText value="Home Phone :" class="modal-body" />
+          				</p:column>
+          				<p:column>
+          					<h:outputText value="#{vehicleDetailBean.homePhone}" class="modal-body" />
+          				</p:column>
+          			</p:row>
+          			
+          			<p:row>
+          				<p:column>
+          					<h:outputText value="Mail :" class="modal-body" />
+          				</p:column>
+          				<p:column>
+          					<h:outputText value="#{vehicleDetailBean.mail}" class="modal-body" />
+          				</p:column>	
+          			</p:row>
+			</h:panelGrid>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- ilan detayi -->
+<div class="ui-grid ui-grid-responsive">
+    <div class="ui-grid-row">
+	    
+	    <div class="ui-col-md-1" style="width: 80px;"/>
+	    
+	    <div class="col-md-11" style="margin-bottom: 300px; margin-top: 50px; margin-right: 10px;">
+			<h:form id="form">           
+			    <p:accordionPanel>
+			        <p:tab title="ADVERTISING DETAIL">
+			            <h:panelGrid columns="1" cellpadding="10">
+			                <h:outputText value="#{vehicleDetailBean.advertisingDetail}"/>
+			            </h:panelGrid>
+			        </p:tab>
+			    </p:accordionPanel>
+    		</h:form>
+		</div>
+
+		<div class="ui-col-md-1" style="width: 70px;"/>
+		
+
+	</div>
+</div>
+</div>
+
+	<!-- footer -->
+	<div class="ui-grid ui-grid-responsive" style="margin-top: 100px;">
+	    <div class="ui-grid-row">
+	    	<ui:include src="template/footer.xhtml"/>
+		</div>
+	</div>
+
+</h:body>
+
+</html>

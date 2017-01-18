@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />		
+ 
+            <title>CarBox</title>
+        </f:facet>
+ 
+        <f:facet name="middle">
+            <h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+            
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+            
+            <h:outputScript name="bootstrap/js/bootstrap.js" />
+        </f:facet>
+        
+        <f:facet name="last">
+ 
+        </f:facet>
+ 
+    </h:head>
+
+
+<h:body> 
+
+<ui:component>
+
+<h:form id="form">
+    <p:dataGrid var="vehicle" value="#{advertisingViewBean.vehicles}" columns="7" layout="grid" 
+        rows="42" paginator="true" id="vehicles"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16,42,48,54"  paginatorPosition="bottom"  >
+ 
+        <f:facet name="header"> Vehicle Showcase </f:facet>
+ 
+ 
+        <p:panel style="text-align:center;">
+            
+            
+            <h:panelGrid columns="1" style="width:100%" layout="grid" >
+	            <p:commandLink  id="cmdlink" action="#{advertisingViewBean.goToVehicleDetail(vehicle.advertiseId)}"  title="#{vehicle.header}" >
+					<p:graphicImage value="#{advertisingViewBean.imageByAdvertiseId}" height="80px;" width="120px;" >
+						 <f:param name="activeVehicleAdvertiseId" value="#{vehicle.advertiseId}" />
+					</p:graphicImage>
+					
+					<f:param name="activeVehicleAdvertiseId" value="#{vehicle.advertiseId}" />
+				</p:commandLink>
+
+				<pe:tooltip for="cmdlink" autoShow="false" widgetVar="tip4"  atPosition="bottom right"/>			
+            </h:panelGrid>
+            
+            
+        </p:panel>
+ 
+    </p:dataGrid>
+ 
+
+</h:form>
+	</ui:component>
+
+
+
+
+</h:body>
+</html>

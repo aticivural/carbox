@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>CarBox</title>
+	<h:outputStylesheet name="css/bootstrap.css" />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+
+
+</h:head>
+<h:body>
+
+	<!-- header -->
+	<div class="control-fluid" style="padding-top: 75px;">
+		<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<ui:insert name="headerArea">
+				<ui:include src="template/header.xhtml" />
+			</ui:insert>
+		</div>
+	</div>
+
+
+<div class="col-md-12" style="padding-bottom: 15px;">
+	
+	
+	<div class="col-md-12" style="padding-bottom: 15px;">
+		<div class="container">
+			<h4><b>Photos</b></h4>
+			
+			<div class="well well-lg" style="height: 500px;">
+			
+			<div class="col-md-5" >
+				<p:panelGrid columns="1" style="width:300px; margin-top:15px; margin-left:25px;" >
+					<h:form enctype="multipart/form-data"  style="height:350px; margin-top:10px;">	
+						
+						<p:fileUpload id="file1"  value="#{advertiseBean.file1}"  mode="simple"  style="padding-bottom:10px;"/>
+						<p:fileUpload id="file2"  value="#{advertiseBean.file2}"  mode="simple"  style="padding-bottom:10px;"/>
+						<p:fileUpload id="file3"  value="#{advertiseBean.file3}"  mode="simple"  style="padding-bottom:10px;"/>
+						<p:fileUpload id="file4"  value="#{advertiseBean.file4}"  mode="simple"  style="padding-bottom:10px;"/>
+						<p:fileUpload id="file5"  value="#{advertiseBean.file5}"  mode="simple"  style="padding-bottom:10px;"/>
+						<p:fileUpload id="file6"  value="#{advertiseBean.file6}"  mode="simple"  style="padding-bottom:10px;"/>
+						<p:fileUpload id="file7"  value="#{advertiseBean.file7}"  mode="simple"  style="padding-bottom:10px;"/>
+						<p:fileUpload id="file8"  value="#{advertiseBean.file8}"  mode="simple"  style="padding-bottom:10px;"/>
+						<p:fileUpload id="file9"  value="#{advertiseBean.file9}"  mode="simple"  style="padding-bottom:10px;"/>
+						<p:fileUpload id="file10" value="#{advertiseBean.file10}" mode="simple"  style="padding-bottom:10px;"/>
+						
+						<h:commandButton value="Add Photos"  actionListener="#{advertiseBean.addPhoto()}" style="margin-top:20px;" class="btn btn-warning btn-lg btn-block"/>
+						
+					</h:form>		
+				</p:panelGrid>
+			</div><!-- end col-md-5 -->
+			
+			
+			<h:form>
+				<div class="col-md-7" style="height: 150px; margin-top: 125px;">
+					<h:outputText id="message" value="Your Photos were added successfully!!!" rendered="#{advertiseBean.photoList.isEmpty() == false}" style="color:red; font-size:40px;" />
+				</div>
+			</h:form>
+			
+			</div><!-- end well -->
+			
+		</div>
+	</div>
+
+
+	<div class="col-md-12" style="padding-bottom: 15px; padding-bottom: 150px;">
+		<div class="container" align="center">
+			<h:form>
+				<p:commandButton value="Back" 	   action="advertiseauction.xhtml?faces-redirect=true"  class="btn btn-default btn-lg" />
+				<h:commandButton value="Advertise" action="index.xhtml?faces-redirect=true"   actionListener="#{advertiseBean.uploadPhotos()}" class="btn btn-primary btn-lg"/>
+			</h:form>
+		</div>
+	</div>
+	
+	
+	
+	
+</div><!-- end -->
+
+
+	<!-- footer -->
+	<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+		<div class="container" >
+			<ui:insert name="footerArea">
+				<ui:include src="template/footer.xhtml"></ui:include>
+			</ui:insert>
+		</div>
+	</div>
+</h:body>
+</html>

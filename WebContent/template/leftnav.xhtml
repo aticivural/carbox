@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<h:outputStylesheet name="css/bootstrap.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" />
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"/> -->
+	<!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/> -->
+	
+</h:head>
+<h:body>
+
+<ui:composition>
+	<h:form>
+		<h:panelGrid columns="1" style="padding-top:10px;" >
+			<p:selectOneMenu id="vehicle" value="#{searchMenu.vehicleType}" style="width:160px;" required="true" >
+				<p:ajax listener="#{searchMenu.onVehicleChange()}" update="brand" />
+				<f:selectItem itemLabel="Select Vehicle" itemValue="" noSelectionOption="false" />
+				<f:selectItems value="#{searchMenu.vehicleTypes}" />
+			</p:selectOneMenu>
+
+			<p:selectOneMenu id="brand" value="#{searchMenu.brand}" style="width:100%;" required="true">
+				<p:ajax listener="#{searchMenu.onBrandChange()}" update="model" />
+				<f:selectItem itemLabel="Select Brand" itemValue="" noSelectionOption="false" />
+				<f:selectItems value="#{searchMenu.brands}" />
+			</p:selectOneMenu>
+			
+
+			<p:selectOneMenu id="model" value="#{searchMenu.model}" style="width:100%;" required="true" >
+				<p:ajax listener="#{searchMenu.onModelChange()}" update="motor" />
+				<f:selectItem itemLabel="Select Model" itemValue="" noSelectionOption="false" />
+				<f:selectItems value="#{searchMenu.models}" />
+			</p:selectOneMenu>
+			
+			<p:selectOneMenu id="motor" value="#{searchMenu.motor}" style="width:100%;" required="true" >
+				<p:ajax listener="#{searchMenu.onMotorChange()}" update="hardwarePackage" />
+				<f:selectItem itemLabel="Select Motor" itemValue="" noSelectionOption="false" />
+				<f:selectItems value="#{searchMenu.motors}" />
+			</p:selectOneMenu>
+
+			<p:selectOneMenu id="hardwarePackage" value="#{searchMenu.hardwarePackage}" style="width:100%;" required="true" >
+				<p:ajax listener="#{searchMenu.onHardwarePackageChange()}" />
+				<f:selectItem itemLabel="Select Package" itemValue="" noSelectionOption="false" />
+				<f:selectItems value="#{searchMenu.hardwarePackages}" />
+			</p:selectOneMenu>
+
+
+			<p:accordionPanel multiple="true" style="width:160px; margin:0px; padding:0px;" activeIndex="none">
+		  	  	<h:outputStylesheet name="css/viewStyle.css" />
+		      
+		        <p:tab title="Color">
+		            <h:panelGrid columns="1" cellpadding="5" cellspacing="5">
+		                <p:selectOneRadio value="#{searchMenu.color}" layout="grid" columns="1">
+		                		<f:selectItem itemValue="Black" itemLabel="Black" />
+		                		<f:selectItem itemValue="White" itemLabel="White" />
+		                		<f:selectItem itemValue="Brown" itemLabel="Brown" /> 
+		                		<f:selectItem itemValue="Gray" itemLabel="Gray" />
+		                		<f:selectItem itemValue="Dark Blue" itemLabel="Dark Blue" />
+		                		<f:selectItem itemValue="Smoke-Colored" itemLabel="Smoke-Colored" /> 
+		                		<f:selectItem itemValue="" itemLabel="No Select" /> 
+		                </p:selectOneRadio>
+		            </h:panelGrid>
+		        </p:tab>
+		      
+		        <p:tab title="Price">
+		            <h:panelGrid columns="3" cellpadding="10">
+		                <p:inputText value="#{searchMenu.minPrice}" placeholder="min" maxlength="7" style="width:70px;" onkeyup="$(this).val($(this).val().replace(/[^0-9]/g, ''));"/> 
+		                	- 
+		                <p:inputText value="#{searchMenu.maxPrice}" placeholder="max" maxlength="7" style="width:70px;" onkeyup="$(this).val($(this).val().replace(/[^0-9]/g, ''));"/>
+		            </h:panelGrid>
+		        </p:tab>
+		        
+		        <p:tab title="Fuel">
+		            <h:panelGrid columns="1" cellpadding="5" cellspacing="5">
+		                <p:selectOneRadio value="#{searchMenu.fuel}" layout="grid" columns="1" >
+		                		<f:selectItem itemValue="Diesel" itemLabel="Diesel" />
+		                		<f:selectItem itemValue="Gasoline" itemLabel="Gasoline" />
+		                		<f:selectItem itemValue="Gasoline-LPG" itemLabel="Gasoline-LPG" /> 
+		                		<f:selectItem itemValue="" itemLabel="No Select" /> 
+		                </p:selectOneRadio>
+		            </h:panelGrid>
+		        </p:tab>
+		        
+		         <p:tab title="Gear">
+		            <h:panelGrid columns="1" cellpadding="5" cellspacing="5">
+		                <p:selectOneRadio value="#{searchMenu.gear}" layout="grid" columns="1" >
+		                		<f:selectItem itemValue="Straight" itemLabel="Straight" />
+		                		<f:selectItem itemValue="Semi Automatic" itemLabel="Semi Automatic" />
+		                		<f:selectItem itemValue="Automatic" itemLabel="Automatic" /> 
+		                		<f:selectItem itemValue="" itemLabel="No Select" /> 
+		                </p:selectOneRadio>
+		            </h:panelGrid>
+		        </p:tab>
+		        
+		        
+		    </p:accordionPanel>
+
+			<br/>
+			<h:commandButton value="Search" class="btn btn-primary" style="width:100%;" action="#{searchMenu.searchResults()}"/>
+				
+			
+		</h:panelGrid>
+	</h:form>
+</ui:composition>
+</h:body>
+</html>
+
